@@ -1,0 +1,102 @@
+# iterator는 iterable한 객체에서만 사용 가능
+# ex) list, tuple, set, dict, str 등
+s1='ABCD'
+
+it=iter(s1)  #문자열을 이터레이터로 변환
+
+print(type(s1)) #<class 'str'>
+print(type(it)) #<class 'str_iterator'>
+
+print(next(it))  #A
+print(next(it))  #B
+print(next(it))  #C
+print(next(it))  #D
+# print(next(it))  #StopIteration 예외 발생 : 더 이상 반환할 요소가 없음
+print(next(it,-1))  # 없으면 기본값 -1 반환
+print(next(it,None))  # 없으면 기본값 None 반환
+
+#range 객체는 iterable하지만 iterator는 아님
+range(10)  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+range(1,10)  # 1, 2, 3, 4, 5, 6, 7, 8, 9
+range(1,10,2)  # 1, 3, 5, 7, 9
+range(10,1,-1)  # 10, 9, 8, 7, 6, 5, 4, 3, 2
+
+# for i in iterable_type:
+#     # 반복할 코드
+
+for i in s1:
+    print(i)
+
+for i in iter(s1):
+    print(i)
+
+for i in reversed(s1):
+    print(i)
+
+for i in range(10):
+    print(i)
+
+for i in range(10,0,-1):
+    print(i)
+
+# generator
+# yield 키워드를 사용하여 generator 함수를 정의할 수 있다
+# 타 언어 coroutine과 유사한 기능을 제공
+
+def foo():
+    print('foo 1')
+    yield 10
+    print('foo 2')
+    yield 20
+    print('foo 3')
+    yield 30
+
+g=foo()  # generator 객체 생성
+print(type(g)) #<class 'generator'>
+
+# 사용법은 반복자와 동일
+# 하지만 yield 키워드로 값을 반환할 때마다 함수의 실행 중단
+# 다음 next() 호출 시 중단된 지점부터 실행 재개
+print(next(g))
+print(next(g))
+print(next(g))
+print(next(g,-1))
+print(next(g,None))
+
+# 무한히 짝수를 생성하는 generator 함수
+def infinite_even():
+    n=0
+    while True:
+        yield n
+        n=n+2
+
+f = open('test.txt','r')
+it=iter(f)  #파일 객체를 이터레이터로 변환
+print(next(it))  #파일의 첫 번째 줄을 반환
+print(next(it))  #파일의 두 번째 줄을 반환
+f.close()  #파일 닫기
+
+def read_file_line_by_line(file_name):
+    for row in open(file_name,'r'):
+        yield row.strip()  #파일을 한 줄씩 읽어서 양쪽 공백 제거 후 반환
+
+def foo2():
+    for i in range(0,100,5):
+        yield i
+
+g1=foo2()
+
+g2=(i for i in range(0,100,5))  #generator expression : foo2()와 동일한 generator 객체 생성)
+
+print(next(g2)) #0
+print(next(g2)) #5
+print(next(g2)) #10
+
+#중첩된 generator expression : i는 0~9, j는 11~19까지의 조합으로 i+j를 반환하는 generator 객체 생성
+# 괄호, 중괄호, 대괄호 안에서는 개행 가능
+g3=(i+j for i in range(10) 
+        for j in range(11,20))
+
+print(next(g3)) #11 (i=0, j=11)
+print(next(g3)) #12 (i=0, j=12)
+print(next(g3)) #13 (i=0, j=13)
