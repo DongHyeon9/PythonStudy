@@ -36,8 +36,21 @@
     <Compile Include="Section2\4_Generator.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Section3\1_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section3\2_tuple.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section3\3_set.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section3\4_dictionary.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Section3\" />
     <Folder Include="Section1\" />
     <Folder Include="Section2\" />
   </ItemGroup>
