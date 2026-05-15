@@ -48,8 +48,25 @@
     <Compile Include="Section3\4_dictionary.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Section4\1_Function.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section4\2_FunctionObject.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section4\3_FirstClassObject.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section4\4_Decorator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Section5\1_Class.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Section5\" />
+    <Folder Include="Section4\" />
     <Folder Include="Section3\" />
     <Folder Include="Section1\" />
     <Folder Include="Section2\" />
